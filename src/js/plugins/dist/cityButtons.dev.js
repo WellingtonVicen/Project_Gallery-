@@ -2,9 +2,11 @@
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
+var _includes = require("../core/includes");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var duration = 600;
+var duration = 300;
 
 function filterByCity(city) {
   (0, _jquery["default"])('[wm-city]').each(function (i, e) {
@@ -25,7 +27,7 @@ function filterByCity(city) {
 
 _jquery["default"].fn.cityButtons = function () {
   var cities = new Set();
-  (0, _jquery["default"])('´[wm-city]').each(function (i, e) {
+  (0, _jquery["default"])('[wm-city]').each(function (i, e) {
     cities.add((0, _jquery["default"])(e).attr('wm-city'));
   });
   var btns = Array.from(cities).map(function (city) {
@@ -46,4 +48,6 @@ _jquery["default"].fn.cityButtons = function () {
   return this;
 };
 
-(0, _jquery["default"])('[wm-city-buttons]').cityButtons();
+(0, _includes.onLoadHtmlSuccess)(function () {
+  (0, _jquery["default"])('[wm-city-buttons]').cityButtons();
+});
